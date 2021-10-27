@@ -17,28 +17,28 @@ public class Blackboards {
     private Assertion assertion = new Assertion();
 
     @BeforeMethod
-    public void setUp(@Optional("firefox") String browser){
-        this.driver = new DriverHelper().setupDriver(browser,driver);
+    public void setUp(@Optional("firefox") String browser) {
+        this.driver = new DriverHelper().setupDriver(browser, driver);
         this.wait = new WebDriverWait(driver, 10);
     }
 
 
     @Test
-    @Parameters({"url","email","password"})
+    @Parameters({"url", "email", "password"})
     public void marcarPresencaTSI(@Optional("https://portal.fmu.br/") String url,
-                      @Optional("2599000@fmu.edu.br") String email,
-                      @Optional("Liberdade15") String password){
+                                  @Optional("2599000@fmu.edu.br") String email,
+                                  @Optional("Liberdade15") String password) {
         TeoriaDeSistemasPO TeoriaDeSistemasPO = new LoginPO(driver)
-                .realizarLogin(email,password,url)
+                .realizarLogin(email, password, url)
                 .acessarBlackboard()
                 .acessarDisciplina()
                 .confirmarPresenca();
         assertion.assertEquals(wait.until(ExpectedConditions.visibilityOf(TeoriaDeSistemasPO
-                .lblCurso)).isDisplayed(),true,"Diciplina TSI acessada com sucesso");
+                .lblCurso)).isDisplayed(), true, "Diciplina TSI acessada com sucesso");
     }
 
     @AfterMethod
-    public void afterMethod(){
+    public void afterMethod() {
         driver.quit();
     }
 

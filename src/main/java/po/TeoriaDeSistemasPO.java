@@ -38,7 +38,7 @@ public class TeoriaDeSistemasPO extends MasterWebPO {
     public TeoriaDeSistemasPO confirmarPresenca() {
         wait.until(ExpectedConditions.elementToBeClickable(btnTeoriaDeSistemas)).click();
 
-        for(int i=0;i<btnPresenca.size();i++){
+        for(int i=0;i<btnPresenca.size();i++) {
             btnPresenca.get(i).click();
         }
         //for(WebElement element:btnPresenca){
